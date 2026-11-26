@@ -23,7 +23,10 @@ const SIZE_CAP = 100_000_000; // never spend more than 0.10 SOL on one entry
 const SIZE_BPS_OF_REAL = 90; // spend at most 0.90% of real reserves (cap is 1%)
 const MIN_BUY = 12_000_000; // smallest entry worth the round-trip fees (0.012 SOL)
 const TAKE_PROFIT = 1.3; // sell when the price is 30% above our entry
-const STOP_LOSS = 0.85; // sell when the price is 15% below our entry
+const STOP_LOSS = 0.9; // sell when the price is 10% below our entry: with a
+// 35.8% win rate on the dev window, the old 15% stop let the 64% of losing
+// trades bleed more than the 30% take-profit on winners could repay once
+// curve + tx fees are counted, so cut losers sooner (payoff 3:1 vs 2:1)
 const TRAIL_ARM = 1.2; // trailing stop only arms once 20% in profit
 const TRAIL_DROP = 0.1; // ... then sell on a 10% pullback from the peak
 const MAX_HOLD_SLOTS = 2000; // give up on a flat coin after 2000 slots
